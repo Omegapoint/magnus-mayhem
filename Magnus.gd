@@ -31,7 +31,7 @@ func animate():
 	_sprite.play("walk")
 	if motion.x > 0:
 		_sprite.flip_h = false
-	else:
+	elif motion.x < 0:
 		_sprite.flip_h = true
 	
 	if motion.y < 0:
