@@ -92,7 +92,7 @@ __meta__ = {
 frames = SubResource( 9 )
 animation = "walk"
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="MagnusSprite"]
+[node name="ArmSprite" type="AnimatedSprite" parent="MagnusSprite"]
 frames = SubResource( 13 )
 animation = "shoot"
 

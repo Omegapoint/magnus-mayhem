@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var _sprite = $MagnusSprite
+onready var _arm_sprite = $MagnusSprite/ArmSprite
 
 var motion = Vector2()
 const speed = 200
@@ -41,3 +42,16 @@ func animate():
 		
 	if is_on_floor() && motion.x == 0:
 		_sprite.play("idle")	
+		
+	move_arm()
+
+
+func move_arm():
+	var rotation = get_global_mouse_position().angle_to_point(position)
+	if(rotation > -PI/2 && rotation < PI/2):
+		_arm_sprite.flip_v = false
+		#_muzzleSprite.flip_v = false
+	else:
+		_arm_sprite.flip_v = true
+		#_muzzleSprite.flip_v = true
+	_arm_sprite.rotation = rotation
