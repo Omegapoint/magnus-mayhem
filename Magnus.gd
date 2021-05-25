@@ -2,16 +2,24 @@ extends KinematicBody2D
 
 onready var _sprite = $MagnusSprite
 onready var _arm_sprite = $MagnusSprite/ArmSprite
+onready var _muzzle_sprite = $MagnusSprite/ArmSprite/MuzzleSprite
+onready var _shootAudio = $ShootAudio
 
 var motion = Vector2()
 const speed = 200
 const jump_speed = 350
 const gravity = 500
-	
+
+func _ready():
+	_muzzle_sprite.frame = 7
+
 func _physics_process(delta):
 
 	get_input()
 	animate()
+	
+	if Input.is_action_just_pressed("click"):
+		handle_shoot()
 			
 	motion.y += gravity * delta	
 	move_and_slide(motion, Vector2.UP)
@@ -27,6 +35,13 @@ func get_input():
 		motion.y = 0
 		if Input.is_action_pressed("jump"):
 			motion.y = -jump_speed	
+
+func handle_shoot():
+	_arm_sprite.frame = 0
+	_arm_sprite.play("shoot")
+	_shootAudio.play()
+	_muzzle_sprite.frame = 0
+	_muzzle_sprite.play("fire")
 
 func animate():
 	_sprite.play("walk")
