@@ -7,12 +7,15 @@ func _ready():
 	$MobTimer.start()
 
 func _on_MobTimer_timeout():
-	$MobPath/MobSpawnLocation.offset = randi()
+	var screen_size = get_viewport().get_visible_rect().size
+	var x = screen_size.x
+	var y = rand_range(0, screen_size.y)
+	
 	var mob = Mob.instance()
-	add_child(mob)
-	var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
-	mob.position = $MobPath/MobSpawnLocation.position
-	direction += rand_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+	
+	mob.position.x = x
+	mob.position.y = y
 	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
-	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+	mob.linear_velocity = mob.linear_velocity.rotated(PI)
+	
+	add_child(mob)

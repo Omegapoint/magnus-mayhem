@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/WorldTiles/tileYellow_06.png" type="Texture" id=1]
 [ext_resource path="res://World.tres" type="Shape2D" id=2]
@@ -78,11 +78,6 @@ points = PoolVector2Array( 0, 0, 64, 64, 0, 64 )
 } ]
 2/z_index = 0
 
-[sub_resource type="Curve2D" id=4]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -128, 256, 0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 1152, -120, 0, 0, 0, 0, 1152, 256, 0, 0, 0, 0, 1088, 256, 0, 0, 0, 0, 1088, -64, 0, 0, 0, 0, -64, -64, 0, 0, 0, 0, -64, 256, 0, 0, 0, 0, -128, 256 )
-}
-
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
 Mob = ExtResource( 6 )
@@ -94,10 +89,5 @@ tile_data = PoolIntArray( 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.4
-
-[node name="MobPath" type="Path2D" parent="."]
-curve = SubResource( 4 )
-
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
