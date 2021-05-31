@@ -4,6 +4,7 @@ onready var _sprite = $MagnusSprite
 onready var _arm_sprite = $MagnusSprite/ArmSprite
 onready var _muzzle_sprite = $MagnusSprite/ArmSprite/MuzzleSprite
 onready var _shootAudio = $ShootAudio
+onready var _aim = $MagnusSprite/ArmSprite/RayCast2D
 
 var motion = Vector2()
 const speed = 200
@@ -18,8 +19,11 @@ func _physics_process(delta):
 	get_input()
 	animate()
 	
+	
+	
 	if Input.is_action_just_pressed("click"):
 		handle_shoot()
+		kill_mob()
 			
 	motion.y += gravity * delta	
 	move_and_slide(motion, Vector2.UP)
@@ -35,6 +39,15 @@ func get_input():
 		motion.y = 0
 		if Input.is_action_pressed("jump"):
 			motion.y = -jump_speed	
+
+
+func kill_mob():
+	if _aim.is_colliding():
+		var collider = _aim.get_collider()
+		if collider.is_in_group("mob"):
+			print("Kill " + collider.name)
+			collider.die()
+		
 
 func handle_shoot():
 	_arm_sprite.frame = 0

@@ -6,7 +6,7 @@ export var max_speed = 150
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var is_dying = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,3 +20,12 @@ func _ready():
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+	
+func die():
+	is_dying = true
+	$AnimatedSprite.play("die")
+	
+
+func _on_AnimatedSprite_animation_finished():
+	if is_dying:
+		queue_free()

@@ -111,13 +111,13 @@ region = Rect2( 64, 192, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 128, 192, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
 region = Rect2( 192, 320, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=22]
+[sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 23 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": false,
 "name": "muzzle",
 "speed": 5.0
@@ -145,7 +145,12 @@ animation = "shoot"
 [node name="MuzzleSprite" type="AnimatedSprite" parent="MagnusSprite/ArmSprite"]
 position = Vector2( 32.3277, -0.471939 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 22 )
+frames = SubResource( 23 )
 animation = "muzzle"
 frame = 2
 speed_scale = 2.0
+
+[node name="RayCast2D" type="RayCast2D" parent="MagnusSprite/ArmSprite"]
+position = Vector2( 34.25, 0.5 )
+enabled = true
+cast_to = Vector2( 500, 0 )
