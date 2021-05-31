@@ -23,6 +23,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	
 func die():
 	is_dying = true
+	$DieAudio.play()
 	$AnimatedSprite.play("die")
 	
 
