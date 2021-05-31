@@ -18,6 +18,5 @@ tile_data = PoolIntArray( 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0
 position = Vector2( 510, 478 )
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]

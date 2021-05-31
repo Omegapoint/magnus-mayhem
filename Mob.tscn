@@ -1,23 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://extras/mob_sprites.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Mob.gd" type="Script" id=2]
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": false,
-"name": "creepormob",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 21.9807, 22.0001 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.3842
 
 [node name="Mob" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -27,12 +14,11 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.75, 0.75 )
-frames = SubResource( 2 )
-animation = "creepormob"
+frames = ExtResource( 1 )
+animation = "move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
